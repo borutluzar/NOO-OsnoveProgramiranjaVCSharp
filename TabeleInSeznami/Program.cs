@@ -179,7 +179,7 @@ namespace ArraysAndLists
                 }
             }
 
-            // Še izpišemo rezultat
+            // Še izpišemo rezultat algoritma
             Console.WriteLine($"Med izbranimi števili je "
                 + "{seznamSodih.Count} sodih.");
 
