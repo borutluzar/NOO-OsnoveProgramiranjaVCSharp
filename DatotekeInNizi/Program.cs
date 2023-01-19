@@ -1,4 +1,6 @@
-﻿namespace FilesAndStrings
+﻿using System.Drawing;
+
+namespace FilesAndStrings
 {
     internal class Program
     {
@@ -25,20 +27,48 @@
             Console.Read();
         }
 
+        /// <summary>
+        /// Metoda, v kateri na kratko prikažemo 
+        /// zapisovanje v datoteko
+        /// </summary>
         static void WritingInFiles()
         {
+            // Z datoteko se povežemo s pomočjo razreda StreamWriter
             StreamWriter swFile = new StreamWriter("Borut.txt", true);
 
+            // Pridobimo trenutni čas in datum
             DateTime dtNow = DateTime.Now;
+            // Zapišimo ga v datoteko skupaj s podatki o vremenu
             swFile.WriteLine($"Zapis je bil ustvarjen: {dtNow.ToString("d. M. yyyy  HH:mm:ss")}");
             swFile.WriteLine("-1");
             swFile.WriteLine("Sončno");
             swFile.WriteLine("Malo pa sneži.");
-
+            
+            // Zaprimo datoteko
             swFile.Close();
             Console.WriteLine("Zapisovanje v datoteko je končano!");
         }
 
+        static void WriteWeatherData(string fileName, double temperature, double pressure, double windSpeed)
+        {
+            StreamWriter swFile = new StreamWriter(fileName, true);
+
+            DateTime dtNow = DateTime.Now;
+            swFile.WriteLine("--------------------------");
+            swFile.WriteLine($"Zapis ustvarjen: {dtNow.ToString("d. M. yyyy  HH:mm:ss")}");
+            swFile.WriteLine("--------------------------");
+            swFile.WriteLine($"Temperatura: {temperature:0.00}");
+            swFile.WriteLine($"Zračni tlak: {pressure:0.00}");
+            swFile.WriteLine($"Hitrost vetra: {windSpeed:0.00}");
+            swFile.WriteLine("**************************");
+
+            swFile.Close();
+        }
+
+        /// <summary>
+        /// Metoda, v kateri na kratko prikažemo 
+        /// branje iz datoteke
+        /// </summary>
         static void ReadingFromFiles()
         {
             string fileName = "Borut.txt";
@@ -88,13 +118,30 @@
             // pridobljene podatke tudi validiramo. 
             // Za zgornje podatke imamo naslednjo shemo:
             // Ime, Priimek, Starost, Višina, Teža, Barva oči, Zaposlitveni status
+            string ime = podatki[0];
+            string priimek = podatki[1];
+            int starost = int.Parse(podatki[2]);
+            int visina = int.Parse(podatki[3]);
+            int teza = int.Parse(podatki[4]);
+            string barvaOci = podatki[5];
+            string zaposlitveniStatus = podatki[6];
+            Console.WriteLine($"Oseba {ime} {priimek} ima {starost} let, " +
+                $"visoka je {visina} cm in težka {teza} kg, " +
+                $"barva njenih oči je {barvaOci}, " +
+                $"zaposlitveni status pa je {zaposlitveniStatus}.");
 
-            string noviPodatki = "  alfa,beta\tgama\tdelta,kappa,,,omega   ";
-            noviPodatki = noviPodatki.Trim();
-            Console.WriteLine(noviPodatki);
+            // Če za podatke nimamo posebne sheme in so samo našteti,
+            // lahko morebitna prazna polja (npr. dve zaporedni vejici brez znaka vmes še vedno
+            // pomenita polje, vendar z vrednostjo "praznega" niza) izločimo
+            // z uporabo lastnosti StringSplitOptions.RemoveEmptyEntries
+            string abeceda = "  alfa,beta\tgama\tdelta,kappa,,,omega   ";
+            abeceda = abeceda.Trim();
+            Console.WriteLine(abeceda);
 
+            // Določimo množico ločil
             char[] znaki = new char[] { ',', '\t' };
-            string[] podatkiTab = noviPodatki.Split(znaki, StringSplitOptions.RemoveEmptyEntries);
+            // In zahtevajmo izločitev praznih polj
+            string[] podatkiTab = abeceda.Split(znaki, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (string podatek in podatkiTab)
             {
@@ -110,6 +157,9 @@
             //Console.WriteLine(emso.Substring(4, 3));            
             int letoRojstva = int.Parse(emso.Substring(4, 3));
 
+            // Nize lahko obravnavamo kot tabele znakov.
+            // Po nizu se tako lahko sprehodimo z zanko foreach
+            // in pregledamo vse njegove znake.
             foreach (char znak in emso)
             {
                 Console.WriteLine(znak);
@@ -124,6 +174,12 @@
                 letoRojstva += 1000;
             }
             Console.WriteLine($"Leto rojstva: {letoRojstva}");
+
+            // Izpis zadnjega znaka niza na dva načina:
+            string kompliciranNiz = "aksfbweijnač,xpwqmxBLsnanč";
+            char zadnjiZnak1 = kompliciranNiz[kompliciranNiz.Length - 1];
+            string zadnjiZnak2 = kompliciranNiz.Substring(kompliciranNiz.Length - 1, 1);
+            kompliciranNiz.IndexOf("wei");
         }
 
     }
