@@ -55,7 +55,7 @@ namespace FilesAndStrings
 
             DateTime dtNow = DateTime.Now;
             swFile.WriteLine("--------------------------");
-            swFile.WriteLine($"Zapis ustvarjen: {dtNow.ToString("d. M. yyyy  HH:mm:ss")}");
+            swFile.WriteLine($"Zapis je bil ustvarjen: {dtNow.ToString("d. M. yyyy  HH:mm:ss")}");
             swFile.WriteLine("--------------------------");
             swFile.WriteLine($"Temperatura: {temperature:0.00}");
             swFile.WriteLine($"Zračni tlak: {pressure:0.00}");
