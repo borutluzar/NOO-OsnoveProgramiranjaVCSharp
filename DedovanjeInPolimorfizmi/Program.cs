@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using ShoppingCart;
+using System.Numerics;
 
 namespace DedovanjeInPolimorfizmi
 {
@@ -15,7 +16,7 @@ namespace DedovanjeInPolimorfizmi
                 new Rectangle(5, 3, 5.7)
             };
 
-            foreach(Shape shp in lstShapes)
+            foreach (Shape shp in lstShapes)
             {
                 Console.WriteLine($"Obseg lika {shp.ID} je {shp.Perimeter()}");
 
@@ -27,6 +28,10 @@ namespace DedovanjeInPolimorfizmi
                 }
 
             }
+
+
+            // Primer ShoppingCart
+            Article article = new Food(230142123202, 9.83, "Goveji biftek");
 
             Console.Read();
         }
