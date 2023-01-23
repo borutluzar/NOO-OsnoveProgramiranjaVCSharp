@@ -1,4 +1,4 @@
-﻿using ShoppingCart;
+﻿using ShoppingCartExample;
 using System.Numerics;
 
 namespace DedovanjeInPolimorfizmi
@@ -30,8 +30,23 @@ namespace DedovanjeInPolimorfizmi
             }
 
 
-            // Primer ShoppingCart
-            Article article = new Food(230142123202, 9.83, "Goveji biftek");
+            // Primer ShoppingCart           
+            
+            ShoppingCart myCart = new ShoppingCart();
+            myCart.ListOfArticles.Add(new Food(230142123202, 9.83, "Goveji biftek"));
+            myCart.ListOfArticles.Add(new Cosmetics(232011, 19.00, "Šampon"));
+            myCart.ListOfArticles.Add(new Publications(144352544, 2.40, "Delo"));
+            myCart.ListOfArticles.Add(new Food(2324352544, 4.41, "Peresniki"));
+
+            Console.WriteLine($"Skupna cena mojega vozička je {myCart.TotalAmount()}€, " +
+                $"od tega sem plačal {myCart.VATAmount():0.00} davka.");
+
+
+            ShoppingCart sosedovCart = new ShoppingCart();
+            sosedovCart.ListOfArticles.Add(new Food(12424, 20.64, "Belgijski vaflji"));
+
+            Console.WriteLine($"Skupna cena mojega vozička je {sosedovCart.TotalAmount()}€, " +
+                $"od tega sem plačal {sosedovCart.VATAmount():0.00} davka.");
 
             Console.Read();
         }
