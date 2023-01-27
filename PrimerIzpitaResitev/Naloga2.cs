@@ -68,7 +68,6 @@ namespace PrimerIzpitaResitev
                     student.Ocene.Add(predmet);
                 }
                 lstStudents.Add(student);
-                double povp = student.PovprecnaOcena();
             }
             // Imamo 10 točk
 
