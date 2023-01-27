@@ -44,7 +44,7 @@ namespace PrimerIzpita
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Ta izbira ni na voljo. Zapiram program.");
+                    Console.WriteLine("Ta izbira ni na voljo. Zapiram program...");
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
